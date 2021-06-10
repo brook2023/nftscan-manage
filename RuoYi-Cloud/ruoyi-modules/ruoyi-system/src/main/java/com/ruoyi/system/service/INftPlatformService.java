@@ -1,0 +1,17 @@
+package com.ruoyi.system.service;
+
+import com.ruoyi.system.domain.NftPlatform;
+
+import java.util.List;
+
+public interface INftPlatformService {
+    List<NftPlatform> selectPlatformList(NftPlatform platform);
+
+    int insertPlatform(NftPlatform platform);
+
+    int updatePlatform(NftPlatform platform);
+
+    int deletePlatformByIds(Long[] platformIds);
+
+    String selectPlatformById(Long platformId);
+}

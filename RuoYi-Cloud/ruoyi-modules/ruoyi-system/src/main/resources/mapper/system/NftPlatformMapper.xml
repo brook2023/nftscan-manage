@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.NftPlatformMapper">
+
+    <resultMap type="nftPlatform" id="NftPlatformResult">
+        <id     property="id"       column="id"      />
+        <result property="platform"       column="platform"      />
+        <result property="website"     column="website"    />
+        <result property="contractAddress"     column="contract_address"    />
+        <result property="tags"     column="tags"    />
+        <result property="twitter"     column="twitter"    />
+        <result property="email"     column="email"    />
+        <result property="discord"     column="discord"    />
+        <result property="telegram"     column="telegram"    />
+        <result property="github"     column="github"    />
+        <result property="medium"     column="medium"    />
+        <result property="descriptionEn"     column="description_en"    />
+        <result property="descriptionCn"     column="description_cn"    />
+        <result property="type"     column="type"    />
+
+    </resultMap>
+
+    <select id="selectPlatformList" parameterType="nftPlatform" resultMap="NftPlatformResult">
+        select * from nft_platform_info
+        where 1=1
+        <if test="platform != null and platform != ''">
+            AND platform like concat('%', #{platform}, '%')
+        </if>
+    </select>
+
+
+    <insert id="insertPlatform" parameterType="nftPlatform">
+        insert into nft_platform_info(
+        <if test="platform != null and platform != ''">platform,</if>
+        <if test="website != null and website != ''">website,</if>
+        <if test="contractAddress != null and contractAddress != ''">contract_address,</if>
+        <if test="tags != null and tags != ''">tags,</if>
+        <if test="twitter != null and twitter != ''">twitter,</if>
+        <if test="email != null and email != ''">email,</if>
+        <if test="discord != null and discord != ''">discord,</if>
+        <if test="telegram != null and telegram != ''">telegram,</if>
+        <if test="github != null and github != ''">github,</if>
+        <if test="medium != null and medium != ''">medium,</if>
+        <if test="type != null and type != ''">type,</if>
+        <if test="descriptionEn != null and descriptionEn != ''">description_en,</if>
+        <if test="descriptionCn != null and descriptionCn != ''">description_cn,</if>
+        )values(
+        <if test="platform != null and platform != ''">#{platform},</if>
+        <if test="website != null and website != ''">#{website},</if>
+        <if test="contractAddress != null and contractAddress != ''">#{contractAddress},</if>
+        <if test="tags != null and tags != ''">#{tags},</if>
+        <if test="twitter != null and twitter != ''">#{twitter},</if>
+        <if test="email != null and email != ''">#{email},</if>
+        <if test="discord != null and discord != ''">#{discord},</if>
+        <if test="telegram != null and telegram != ''">#{telegram},</if>
+        <if test="github != null and github != ''">#{github},</if>
+        <if test="medium != null and medium != ''">#{medium},</if>
+        <if test="type != null and type != ''">#{type},</if>
+        <if test="descriptionEn != null and descriptionEn != ''">#{descriptionEn},</if>
+        <if test="descriptionCn != null and descriptionCn != ''">#{descriptionCn},</if>
+        )
+    </insert>
+
+    <delete id="deletePlatformByIds" parameterType="Long">
+        delete from nft_platform_info where id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updatePlatform" parameterType="nftPlatform">
+        update nft_platform_info
+        <set>
+            <if test="platform != null and platform != ''">platform=#{platform},</if>
+            <if test="website != null and website != ''">website=#{website},</if>
+            <if test="contractAddress != null and contractAddress != ''">contract_address=#{contractAddress},</if>
+            <if test="tags != null and tags != ''">tags=#{tags},</if>
+            <if test="twitter != null and twitter != ''">twitter=#{twitter},</if>
+            <if test="email != null and email != ''">email=#{email},</if>
+            <if test="discord != null and discord != ''">discord=#{discord},</if>
+            <if test="telegram != null and telegram != ''">telegram=#{telegram},</if>
+            <if test="github != null and github != ''">github=#{github},</if>
+            <if test="medium != null and medium != ''">medium=#{medium},</if>
+            <if test="type != null and type != ''">type=#{type},</if>
+            <if test="descriptionEn != null and descriptionEn != ''">descriptionEn=#{descriptionEn},</if>
+            <if test="descriptionCn != null and descriptionCn != ''">descriptionCn=#{descriptionCn},</if>
+        </set>
+        where id= #{id}
+    </update>
+
+    <select id="selectPlatformById" parameterType="Long" resultMap="NftPlatformResult">
+        select * from nft_platform_info
+        where id = #{platformId}
+    </select>
+
+</mapper>
