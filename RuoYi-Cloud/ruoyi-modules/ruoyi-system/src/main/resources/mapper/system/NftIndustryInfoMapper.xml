@@ -11,20 +11,19 @@
         <result property="type"     column="type"    />
         <result property="createTime"        column="create_time"        />
         <result property="tags"  column="tags"  />
-        <result property="platform"          column="platform"          />
         <result property="author"       column="author"       />
-        <result property="imageUrl"       column="image_url"       />
+        <result property="logo"       column="logo"       />
         <result property="createBy"       column="create_by"       />
+        <result property="link"       column="link"       />
+        <result property="cover"       column="cover"       />
+        <result property="contentSource"       column="content_source"       />
     </resultMap>
 
     <select id="selectInfoList" parameterType="nftIndustryInfo" resultMap="NftInfoResult">
-        select id,title,content,type,create_time,tags,platform,author,image_url from nft_news_flash
+        select id,title,content,type,create_time,tags,author,logo,link,cover,content_source from nft_news_flash
         where 1=1
         <if test="title != null and title != ''">
             AND title like concat('%', #{title}, '%')
-        </if>
-        <if test="createBy != null and createBy != ''">
-            AND create_by = #{createBy}
         </if>
         <if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
             AND date_format(create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
@@ -41,20 +40,24 @@
         <if test="content != null and content != ''">content,</if>
         <if test="type != null and type != ''">type,</if>
         <if test="tags != null and tags != ''">tags,</if>
-        <if test="platform != null and platform != ''">platform,</if>
         <if test="author != null and author != ''">author,</if>
-        <if test="imageUrl != null and imageUrl != ''">image_url,</if>
+        <if test="logo != null and logo != ''">logo,</if>
         <if test="createBy != null and createBy != ''">create_by,</if>
+        <if test="link != null and link != ''">link,</if>
+        <if test="cover != null and cover != ''">cover,</if>
+        <if test="contentSource != null and contentSource != ''">content_source,</if>
         create_time
         )values(
         <if test="title != null and title != ''">#{title},</if>
         <if test="content != null and content != ''">#{content},</if>
         <if test="type != null and type != ''">#{type},</if>
         <if test="tags != null and tags != ''">#{tags},</if>
-        <if test="platform != null and platform != ''">#{platform},</if>
         <if test="author != null and author != ''">#{author},</if>
-        <if test="imageUrl != null and imageUrl != ''">#{imageUrl},</if>
+        <if test="logo != null and logo != ''">#{logo},</if>
         <if test="createBy != null and createBy != ''">#{createBy},</if>
+        <if test="link != null and link != ''">#{link},</if>
+        <if test="cover != null and cover != ''">#{cover},</if>
+        <if test="contentSource != null and contentSource != ''">#{contentSource},</if>
         sysdate()
         )
     </insert>
@@ -72,14 +75,17 @@
             <if test="title != null and title != ''">title = #{title},</if>
             <if test="content != null and content != ''">content = #{content},</if>
             <if test="type != null and type != ''">type = #{type},</if>
-            <if test="platform != null and platform != ''">platform = #{platform},</if>
             <if test="author != null and author != ''">author = #{author},</if>
+            <if test="link != null and link != ''">link=#{link},</if>
+            <if test="cover != null and cover != ''">cover=#{cover},</if>
+            <if test="tags != null and tags != ''">tags=#{tags},</if>
+            <if test="contentSource != null and contentSource != ''">content_source=#{contentSource},</if>
         </set>
         where id= #{id}
     </update>
 
     <select id="selectInfoById" parameterType="Long" resultMap="NftInfoResult">
-        select id,title,content,type,create_time,tags,platform,author,image_url from nft_news_flash
+        select id,title,content,type,create_time,tags,author,logo,link,cover,content_source from nft_news_flash
         where id = #{infoId}
     </select>
 

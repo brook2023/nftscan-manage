@@ -1,9 +1,5 @@
 package com.ruoyi.file.utils;
 
-import java.io.File;
-import java.io.IOException;
-import org.apache.commons.io.FilenameUtils;
-import org.springframework.web.multipart.MultipartFile;
 import com.ruoyi.common.core.exception.file.FileNameLengthLimitExceededException;
 import com.ruoyi.common.core.exception.file.FileSizeLimitExceededException;
 import com.ruoyi.common.core.exception.file.InvalidExtensionException;
@@ -11,6 +7,11 @@ import com.ruoyi.common.core.utils.DateUtils;
 import com.ruoyi.common.core.utils.IdUtils;
 import com.ruoyi.common.core.utils.StringUtils;
 import com.ruoyi.common.core.utils.file.MimeTypeUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 文件上传工具类
@@ -45,6 +46,7 @@ public class FileUploadUtils
         }
         catch (Exception e)
         {
+            System.out.println("===========Exception============" + e.getMessage());
             throw new IOException(e.getMessage(), e);
         }
     }
@@ -123,13 +125,17 @@ public class FileUploadUtils
             throws FileSizeLimitExceededException, InvalidExtensionException
     {
         long size = file.getSize();
+        System.out.println("=========================size > DEFAULT_MAX_SIZE====" + (size > DEFAULT_MAX_SIZE));
         if (DEFAULT_MAX_SIZE != -1 && size > DEFAULT_MAX_SIZE)
         {
+            System.out.println("===========================DEFAULT_MAX_SIZE=============="+DEFAULT_MAX_SIZE);
+            System.out.println("=================size===============" + size);
             throw new FileSizeLimitExceededException(DEFAULT_MAX_SIZE / 1024 / 1024);
         }
 
         String fileName = file.getOriginalFilename();
         String extension = getExtension(file);
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
         if (allowedExtension != null && !isAllowedExtension(extension, allowedExtension))
         {
             if (allowedExtension == MimeTypeUtils.IMAGE_EXTENSION)

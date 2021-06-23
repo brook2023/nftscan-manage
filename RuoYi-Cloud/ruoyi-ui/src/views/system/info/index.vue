@@ -59,21 +59,28 @@
           v-hasPermi="['system:info:remove']"
         >删除</el-button>
       </el-col>
+      <el-col :span="1.5">
+        <el-button
+          type="info"
+          plain
+          icon="el-icon-upload2"
+          size="mini"
+          @click="handleImport"
+          v-hasPermi="['system:info:import']"
+        >导入</el-button>
+      </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="infoList" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="标题" align="center" prop="title" />
-      <el-table-column label="内容" align="left" prop="content"/>
-      <el-table-column label="类型" align="center" prop="type" :formatter="typeFormat"/>
-<!--      <el-table-column label="平台" align="center" prop="platform" />
-      <el-table-column label="作者" align="center" prop="author" />-->
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.createTime) }}</span>
-        </template>
-      </el-table-column>
+    <el-table v-loading="loading" :data="infoList" @selection-change="handleSelectionChange" tooltip-effect="dark">
+      <el-table-column type="selection" width="55" align="center" show-overflow-tooltip/>
+      <el-table-column label="标题" align="center" prop="title" show-overflow-tooltip/>
+      <el-table-column label="内容" align="left" prop="content" show-overflow-tooltip/>
+      <el-table-column label="类型" align="center" prop="type" :formatter="typeFormat" show-overflow-tooltip/>
+      <el-table-column label="内容来源" align="center" prop="contentSource" :formatter="sourceFormat" show-overflow-tooltip/>
+      <el-table-column label="链接" align="center" prop="link" show-overflow-tooltip/>
+      <el-table-column label="作者" align="center" prop="author" show-overflow-tooltip/>
+      <el-table-column label="标签" align="center" prop="tags" show-overflow-tooltip/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -103,7 +110,7 @@
     />
 
     <!-- 添加或修改岗位对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="600px" append-to-body>
+    <el-dialog :title="title" :visible.sync="open" width="800px" height="600px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="类型" prop="type">
           <el-radio-group v-model="form.type">
@@ -114,29 +121,93 @@
             >{{dict.dictLabel}}</el-radio>
           </el-radio-group>
         </el-form-item>
+        <el-form-item label="资讯来源" prop="contentSource">
+          <el-select v-model="form.contentSource" placeholder="请选择">
+            <el-option
+              v-for="dict in sourceOptions"
+              :key="dict.dictValue"
+              :label="dict.dictLabel"
+              :value="dict.dictValue"
+            ></el-option>
+          </el-select>
+        </el-form-item>
         <el-form-item label="标题" prop="title">
           <el-input v-model="form.title" placeholder="请输入标题" />
         </el-form-item>
         <el-form-item label="内容" prop="content">
-          <el-input v-model="form.content" type="textarea" placeholder="请输入内容"/>
+          <el-input class="textarea-reset" v-model="form.content" type="textarea" placeholder="请输入内容"/>
         </el-form-item>
+
         <el-form-item label="链接" prop="platform" v-if="form.type==='0'">
           <el-input v-model="form.link" placeholder="请输入链接" />
         </el-form-item>
         <el-form-item label="作者" prop="author" v-if="form.type==='0'">
           <el-input v-model="form.author" placeholder="请输入作者" />
         </el-form-item>
-        <el-form-item label="标签" prop="tags" v-if="form.type==='0'">
-          <el-input v-model="form.tags" placeholder="请输入标签" />
+        <el-form-item label="标签" prop="tags">
+          <el-checkbox-group v-model="form.tags">
+            <el-checkbox v-for="item in tagOptions" :label="item.id" :key="item.tag">{{item.tag}}</el-checkbox>
+          </el-checkbox-group>
         </el-form-item>
-        <el-form-item label="封面" prop="image" v-if="form.type==='0'">
-          <el-input v-model="form.image" placeholder="请选择封面" />
+
+        <el-form-item label="封面" prop="cover" v-if="form.type==='0'">
+          <el-upload
+            :action="uploadImgUrl"
+            list-type="picture-card"
+            :on-success="handleUploadSuccess"
+            :before-upload="handleBeforeUpload"
+            :on-error="handleUploadError"
+            name="file"
+            :show-file-list="false"
+            :headers="headers"
+            style="display: inline-block; vertical-align: top"
+          >
+            <el-image v-if="!form.cover" :src="form.cover">
+              <div slot="error" class="image-slot">
+                <i class="el-icon-plus" />
+              </div>
+            </el-image>
+            <div v-else class="image">
+              <el-image :src="form.cover" :style="`width:150px;height:150px;`" fit="fill"/>
+
+            </div>
+          </el-upload>
         </el-form-item>
 
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button type="primary" @click="submitForm">发布</el-button>
         <el-button @click="cancel">取 消</el-button>
+      </div>
+    </el-dialog>
+
+    <!-- 用户导入对话框 -->
+    <el-dialog :title="upload.title" :visible.sync="upload.open" width="400px" append-to-body>
+      <el-upload
+        ref="upload"
+        :limit="1"
+        accept=".xlsx, .xls"
+        :headers="upload.headers"
+        :action="upload.url + '?updateSupport=' + upload.updateSupport"
+        :disabled="upload.isUploading"
+        :on-progress="handleFileUploadProgress"
+        :on-success="handleFileSuccess"
+        :auto-upload="false"
+        drag
+      >
+        <i class="el-icon-upload"></i>
+        <div class="el-upload__text">
+          将文件拖到此处，或
+          <em>点击上传</em>
+        </div>
+        <div class="el-upload__tip" slot="tip">
+          <el-link type="info" style="font-size:16px; color: #3A71A8;" @click="importTemplate">下载导入模板</el-link>
+        </div>
+        <div class="el-upload__tip" style="color:red" slot="tip">提示：仅允许导入“xls”或“xlsx”格式文件！</div>
+      </el-upload>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitFileForm">确 定</el-button>
+        <el-button @click="upload.open = false">取 消</el-button>
       </div>
     </el-dialog>
   </div>
@@ -144,6 +215,8 @@
 
 <script>
 import { listInfo, getInfo, delInfo, addInfo, updateInfo } from "@/api/system/info";
+import { getAllTags } from "@/api/system/asset";
+import { getToken } from "@/utils/auth";
 
 export default {
   name: "Info",
@@ -169,6 +242,24 @@ export default {
       open: false,
       // 状态数据字典
       typeOptions: [],
+      // 内容来源
+      sourceOptions: [],
+      value: "",
+      // 导入参数
+      upload: {
+        // 是否显示弹出层（用户导入）
+        open: false,
+        // 弹出层标题（用户导入）
+        title: "",
+        // 是否禁用上传
+        isUploading: false,
+        // 是否更新已经存在的用户数据
+        updateSupport: 0,
+        // 设置上传的请求头部
+        headers: { Authorization: "Bearer " + getToken() },
+        // 上传的地址
+        url: process.env.VUE_APP_BASE_API + "/system/info/importData"
+      },
       // 查询参数
       queryParams: {
         pageNum: 1,
@@ -188,14 +279,30 @@ export default {
         ],
         type: [
           { required: true, message: "类型不能为空", trigger: "blur" }
+        ],
+        contentSource: [
+          { required: true, message: "资讯来源不能为空", trigger: "blur" }
         ]
+      },
+      tagOptions: [],
+      dialogVisible: false,
+      uploadImgUrl: process.env.VUE_APP_BASE_API + "/file/upload", // 上传的图片服务器地址
+      headers: {
+        Authorization: "Bearer " + getToken(),
       }
     };
   },
+
   created() {
     this.getList();
+    this.getTags();
     this.getDicts("nft_info_type").then(response => {
       this.typeOptions = response.data;
+    });
+
+    // 内容来源
+    this.getDicts("sys_content_source").then(response => {
+      this.sourceOptions = response.data;
     });
   },
   methods: {
@@ -208,9 +315,20 @@ export default {
         this.loading = false;
       });
     },
+    // 查询标签信息
+    getTags() {
+      getAllTags().then(response => {
+        this.tagOptions = response.rows;
+      });
+    },
     // 岗位状态字典翻译
     typeFormat(row, column) {
       return this.selectDictLabel(this.typeOptions, row.type);
+    },
+
+    // 内容来源
+    sourceFormat(row, column) {
+      return this.selectDictLabel(this.sourceOptions, row.contentSource);
     },
     // 取消按钮
     cancel() {
@@ -225,7 +343,9 @@ export default {
         content: undefined,
         platform: undefined,
         author: undefined,
-        type: "1"
+        type: "1",
+        cover: "",
+        tags: []
       };
       this.resetForm("form");
     },
@@ -249,14 +369,14 @@ export default {
     handleAdd() {
       this.reset();
       this.open = true;
-      this.title = "添加资讯";
+      this.title = "发布资讯";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
       const infoId = row.id || this.ids
       getInfo(infoId).then(response => {
-        this.form = response.data;
+        this.form = {...response.data,tags:response.data.tags ? response.data.tags.split(',').map(e=>Number(e)):[], cover: response.data.cover};
         this.open = true;
         this.title = "修改资讯";
       });
@@ -265,14 +385,16 @@ export default {
     submitForm: function() {
       this.$refs["form"].validate(valid => {
         if (valid) {
+          const formData = JSON.parse(JSON.stringify(this.form));
+          formData.tags = formData.tags.join(',');
           if (this.form.id != undefined) {
-            updateInfo(this.form).then(response => {
+            updateInfo(formData).then(response => {
               this.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
-            addInfo(this.form).then(response => {
+            addInfo(formData).then(response => {
               this.msgSuccess("新增成功");
               this.open = false;
               this.getList();
@@ -284,7 +406,7 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       const infoIds = row.id || this.ids;
-      this.$confirm('是否确认删除岗位编号为"' + infoIds + '"的数据项?', "警告", {
+      this.$confirm('是否确认删除所选数据项?', "警告", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning"
@@ -300,7 +422,86 @@ export default {
       this.download('system/info/export', {
         ...this.queryParams
       }, `info_${new Date().getTime()}.xlsx`)
+    },
+
+
+    removeImage() {
+      this.form.cover = '';
+      this.value = '';
+    },
+    handleUploadSuccess: function (res) {
+      this.form.cover = res.data.url;
+      this.value = res.data.url;
+      this.loading.close();
+    },
+    handleBeforeUpload(res) {
+      this.loading = this.$loading({
+        lock: true,
+        text: "上传中",
+        background: "rgba(0, 0, 0, 0.7)",
+      });
+    },
+    handleUploadError() {
+      this.$message({
+        type: "error",
+        message: "上传失败",
+      });
+      this.loading.close();
+    },
+    /** 导入按钮操作 */
+    handleImport() {
+      this.upload.title = "资讯导入";
+      this.upload.open = true;
+    },
+    /** 下载模板操作 */
+    importTemplate() {
+      var name = "资讯数据导入模板";
+      var url = './info_template.xlsx';
+      var suffix = url.substring(url.lastIndexOf("."), url.length);
+      const a = document.createElement('a')
+      a.setAttribute('download', name + suffix)
+      a.setAttribute('target', '_blank')
+      a.setAttribute('href', url)
+      a.click()
+    },
+    // 文件上传中处理
+    handleFileUploadProgress(event, file, fileList) {
+      this.upload.isUploading = true;
+    },
+    // 文件上传成功处理
+    handleFileSuccess(response, file, fileList) {
+      this.upload.open = false;
+      this.upload.isUploading = false;
+      this.$refs.upload.clearFiles();
+      this.$alert(response.msg, "导入结果", { dangerouslyUseHTMLString: true });
+      this.getList();
+    },
+    // 提交上传文件
+    submitFileForm() {
+      this.$refs.upload.submit();
     }
-  }
+  },
 };
 </script>
+
+<style lang="scss">
+                           .image {
+                             position: relative;
+  .mask {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.3s;
+  }
+  &:hover .mask {
+     opacity: 1;
+   }
+  }
+  .textarea-reset{
+    textarea{
+      min-height: 150px !important;
+    }
+  }
+</style>

@@ -17,5 +17,5 @@ public interface NftPlatformMapper {
 
     int deletePlatformByIds(Long[] platformIds);
 
-    String selectPlatformById(Long platformId);
+    NftPlatform selectPlatformById(Long platformId);
 }

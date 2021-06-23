@@ -45,7 +45,7 @@
         <if test="medium != null and medium != ''">medium,</if>
         <if test="type != null and type != ''">type,</if>
         <if test="descriptionEn != null and descriptionEn != ''">description_en,</if>
-        <if test="descriptionCn != null and descriptionCn != ''">description_cn,</if>
+        <if test="descriptionCn != null and descriptionCn != ''">description_cn</if>
         )values(
         <if test="platform != null and platform != ''">#{platform},</if>
         <if test="website != null and website != ''">#{website},</if>
@@ -59,7 +59,7 @@
         <if test="medium != null and medium != ''">#{medium},</if>
         <if test="type != null and type != ''">#{type},</if>
         <if test="descriptionEn != null and descriptionEn != ''">#{descriptionEn},</if>
-        <if test="descriptionCn != null and descriptionCn != ''">#{descriptionCn},</if>
+        <if test="descriptionCn != null and descriptionCn != ''">#{descriptionCn}</if>
         )
     </insert>
 
@@ -84,8 +84,8 @@
             <if test="github != null and github != ''">github=#{github},</if>
             <if test="medium != null and medium != ''">medium=#{medium},</if>
             <if test="type != null and type != ''">type=#{type},</if>
-            <if test="descriptionEn != null and descriptionEn != ''">descriptionEn=#{descriptionEn},</if>
-            <if test="descriptionCn != null and descriptionCn != ''">descriptionCn=#{descriptionCn},</if>
+            <if test="descriptionEn != null and descriptionEn != ''">description_en=#{descriptionEn},</if>
+            <if test="descriptionCn != null and descriptionCn != ''">description_cn=#{descriptionCn},</if>
         </set>
         where id= #{id}
     </update>

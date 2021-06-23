@@ -13,5 +13,5 @@ public interface INftPlatformService {
 
     int deletePlatformByIds(Long[] platformIds);
 
-    String selectPlatformById(Long platformId);
+    NftPlatform selectPlatformById(Long platformId);
 }

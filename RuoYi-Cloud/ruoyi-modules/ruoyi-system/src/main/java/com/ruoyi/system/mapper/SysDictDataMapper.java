@@ -1,10 +1,9 @@
 package com.ruoyi.system.mapper;
 
-import java.util.List;
-
+import com.ruoyi.system.domain.SysDictData;
 import org.apache.ibatis.annotations.Param;
 
-import com.ruoyi.system.domain.SysDictData;
+import java.util.List;
 
 /**
  * 字典表 数据层
@@ -94,4 +93,13 @@ public interface SysDictDataMapper
      * @return 结果
      */
     public int updateDictDataType(@Param("oldDictType") String oldDictType, @Param("newDictType") String newDictType);
+
+
+    /**
+     * 根据字典值获取
+     * @param dictType
+     * @param dictLabel
+     * @return
+     */
+    String selectDictValue(@Param("dictType") String dictType, @Param("dictLabel") String dictLabel);
 }

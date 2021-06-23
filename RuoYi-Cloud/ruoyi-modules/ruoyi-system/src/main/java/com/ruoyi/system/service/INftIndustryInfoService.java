@@ -14,4 +14,6 @@ public interface INftIndustryInfoService {
     int deleteInfoByIds(Long[] infoIds);
 
     NftIndustryInfo selectInfoById(Long infoId);
+
+    String importInfo(List<NftIndustryInfo> infoList, String operName);
 }

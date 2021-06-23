@@ -52,21 +52,21 @@
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="platformList" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="平台" align="center" prop="platform" />
-      <el-table-column label="官网" align="center" prop="website"/>
-      <el-table-column label="合约地址" align="center" prop="contractAddress"/>
-      <el-table-column label="类别" align="center" prop="type"/>
-      <el-table-column label="标签" align="center" prop="tags"/>
-      <el-table-column label="Twitter" align="center" prop="twitter"/>
-      <el-table-column label="Email" align="center" prop="email"/>
-      <el-table-column label="Discord" align="center" prop="discord"/>
-      <el-table-column label="Telegram" align="center" prop="telegram"/>
-      <el-table-column label="Github" align="center" prop="github"/>
-      <el-table-column label="Medium" align="center" prop="medium"/>
-      <el-table-column label="描述(英文)" align="center" prop="descriptionEn"/>
-      <el-table-column label="描述(中文)" align="center" prop="descriptionCn"/>
+    <el-table v-loading="loading" :data="platformList" @selection-change="handleSelectionChange" tooltip-effect="dark">
+      <el-table-column type="selection" width="55" align="center" show-overflow-tooltip/>
+      <el-table-column label="平台" align="center" prop="platform" show-overflow-tooltip/>
+      <el-table-column label="官网" align="center" prop="website" show-overflow-tooltip/>
+      <el-table-column label="合约地址" align="center" prop="contractAddress" show-overflow-tooltip/>
+      <el-table-column label="类别" align="center" prop="type" show-overflow-tooltip/>
+      <el-table-column label="标签" align="center" prop="tags" show-overflow-tooltip/>
+      <el-table-column label="Twitter" align="center" prop="twitter" show-overflow-tooltip/>
+      <el-table-column label="Email" align="center" prop="email" show-overflow-tooltip/>
+      <el-table-column label="Discord" align="center" prop="discord" show-overflow-tooltip/>
+      <el-table-column label="Telegram" align="center" prop="telegram" show-overflow-tooltip/>
+      <el-table-column label="Github" align="center" prop="github" show-overflow-tooltip/>
+      <el-table-column label="Medium" align="center" prop="medium" show-overflow-tooltip/>
+      <el-table-column label="描述(英文)" align="center" prop="descriptionEn" show-overflow-tooltip/>
+      <el-table-column label="描述(中文)" align="center" prop="descriptionCn" show-overflow-tooltip/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -133,10 +133,10 @@
           <el-input v-model="form.medium" placeholder="请输入Medium" />
         </el-form-item>
         <el-form-item label="描述(英文)" prop="descriptionEn">
-          <el-input v-model="form.descriptionEn" placeholder="请输入描述信息" />
+          <el-input v-model="form.descriptionEn" type="textarea" placeholder="请输入描述信息" />
         </el-form-item>
         <el-form-item label="描述(中文)" prop="descriptionCn">
-          <el-input v-model="form.descriptionCn" placeholder="请输入描述信息" />
+          <el-input v-model="form.descriptionCn" type="textarea" placeholder="请输入描述信息" />
         </el-form-item>
 
 
@@ -193,6 +193,11 @@ export default {
       }
     };
   },
+
+  created() {
+    this.getList();
+  },
+
   methods: {
     /** 查询平台列表 */
     getList() {

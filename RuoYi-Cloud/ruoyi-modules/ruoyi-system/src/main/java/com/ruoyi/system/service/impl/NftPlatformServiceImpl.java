@@ -40,7 +40,7 @@ public class NftPlatformServiceImpl implements INftPlatformService {
     }
 
     @Override
-    public String selectPlatformById(Long platformId) {
+    public NftPlatform selectPlatformById(Long platformId) {
         return nftPlatformMapper.selectPlatformById(platformId);
     }
 }

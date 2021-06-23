@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.NftAssetInfoMapper">
+    
+    <resultMap type="NftAssetInfo" id="NftAssetInfoResult">
+        <result property="id"    column="id"    />
+        <result property="methodContract"    column="method_contract"    />
+        <result property="tokenContract"    column="token_contract"    />
+        <result property="symbol"    column="symbol"    />
+        <result property="tokenId"    column="token_id"    />
+        <result property="txHash"    column="tx_hash"    />
+        <result property="blockNumber"    column="block_number"    />
+        <result property="blockHash"    column="block_hash"    />
+        <result property="txTimestamp"    column="tx_timestamp"    />
+        <result property="uri"    column="uri"    />
+        <result property="remark"    column="remark"    />
+        <result property="nftFrom"    column="nft_from"    />
+        <result property="nftUniqueNum"    column="nft_unique_num"    />
+        <result property="name"    column="name"    />
+        <result property="description"    column="description"    />
+        <result property="image"    column="image"    />
+        <result property="externalUrl"    column="external_url"    />
+        <result property="ethResult"    column="eth_result"    />
+        <result property="jsonUrl"    column="json_url"    />
+        <result property="imageUrl"    column="image_url"    />
+        <result property="tag"    column="tag"    />
+    </resultMap>
+
+    <sql id="selectNftAssetInfoVo">
+        select id, method_contract, token_contract, symbol, token_id, tx_hash, block_number, block_hash, tx_timestamp, uri, remark, nft_from, nft_unique_num, name, description, image, external_url, eth_result, json_url, image_url,tag from nft_asset_info
+    </sql>
+
+    <select id="selectNftAssetInfoList" parameterType="NftAssetInfo" resultMap="NftAssetInfoResult">
+        <include refid="selectNftAssetInfoVo"/>
+        <where>  
+            <if test="methodContract != null  and methodContract != ''"> and method_contract = #{methodContract}</if>
+            <if test="tokenContract != null  and tokenContract != ''"> and token_contract = #{tokenContract}</if>
+            <if test="symbol != null  and symbol != ''"> and symbol = #{symbol}</if>
+            <if test="tokenId != null  and tokenId != ''"> and token_id = #{tokenId}</if>
+            <if test="txHash != null  and txHash != ''"> and tx_hash = #{txHash}</if>
+            <if test="blockNumber != null "> and block_number = #{blockNumber}</if>
+            <if test="blockHash != null  and blockHash != ''"> and block_hash = #{blockHash}</if>
+            <if test="txTimestamp != null  and txTimestamp != ''"> and tx_timestamp = #{txTimestamp}</if>
+            <if test="uri != null  and uri != ''"> and uri = #{uri}</if>
+            <if test="nftFrom != null  and nftFrom != ''"> and nft_from = #{nftFrom}</if>
+            <if test="nftUniqueNum != null  and nftUniqueNum != ''"> and nft_unique_num = #{nftUniqueNum}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="description != null  and description != ''"> and description = #{description}</if>
+            <if test="image != null  and image != ''"> and image = #{image}</if>
+            <if test="externalUrl != null  and externalUrl != ''"> and external_url = #{externalUrl}</if>
+            <if test="ethResult != null  and ethResult != ''"> and eth_result = #{ethResult}</if>
+            <if test="jsonUrl != null  and jsonUrl != ''"> and json_url = #{jsonUrl}</if>
+            <if test="imageUrl != null  and imageUrl != ''"> and image_url = #{imageUrl}</if>
+        </where>
+    </select>
+    
+    <select id="selectNftAssetInfoById" parameterType="Long" resultMap="NftAssetInfoResult">
+        <include refid="selectNftAssetInfoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertNftAssetInfo" parameterType="NftAssetInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into nft_asset_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="methodContract != null">method_contract,</if>
+            <if test="tokenContract != null">token_contract,</if>
+            <if test="symbol != null">symbol,</if>
+            <if test="tokenId != null">token_id,</if>
+            <if test="txHash != null">tx_hash,</if>
+            <if test="blockNumber != null">block_number,</if>
+            <if test="blockHash != null">block_hash,</if>
+            <if test="txTimestamp != null">tx_timestamp,</if>
+            <if test="uri != null">uri,</if>
+            <if test="remark != null">remark,</if>
+            <if test="nftFrom != null">nft_from,</if>
+            <if test="nftUniqueNum != null">nft_unique_num,</if>
+            <if test="name != null">name,</if>
+            <if test="description != null">description,</if>
+            <if test="image != null">image,</if>
+            <if test="externalUrl != null">external_url,</if>
+            <if test="ethResult != null">eth_result,</if>
+            <if test="jsonUrl != null">json_url,</if>
+            <if test="imageUrl != null">image_url,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="methodContract != null">#{methodContract},</if>
+            <if test="tokenContract != null">#{tokenContract},</if>
+            <if test="symbol != null">#{symbol},</if>
+            <if test="tokenId != null">#{tokenId},</if>
+            <if test="txHash != null">#{txHash},</if>
+            <if test="blockNumber != null">#{blockNumber},</if>
+            <if test="blockHash != null">#{blockHash},</if>
+            <if test="txTimestamp != null">#{txTimestamp},</if>
+            <if test="uri != null">#{uri},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="nftFrom != null">#{nftFrom},</if>
+            <if test="nftUniqueNum != null">#{nftUniqueNum},</if>
+            <if test="name != null">#{name},</if>
+            <if test="description != null">#{description},</if>
+            <if test="image != null">#{image},</if>
+            <if test="externalUrl != null">#{externalUrl},</if>
+            <if test="ethResult != null">#{ethResult},</if>
+            <if test="jsonUrl != null">#{jsonUrl},</if>
+            <if test="imageUrl != null">#{imageUrl},</if>
+         </trim>
+    </insert>
+
+    <update id="updateNftAssetInfo" parameterType="NftAssetInfo">
+        update nft_asset_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="tag != null">tag = #{tag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteNftAssetInfoById" parameterType="Long">
+        delete from nft_asset_info where id = #{id}
+    </delete>
+
+    <delete id="deleteNftAssetInfoByIds" parameterType="String">
+        delete from nft_asset_info where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

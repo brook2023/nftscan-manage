@@ -1,6 +1,7 @@
 package com.ruoyi.system.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ruoyi.common.core.annotation.Excel;
 import com.ruoyi.common.core.web.domain.BaseEntity;
 import org.apache.ibatis.type.Alias;
 
@@ -16,22 +17,56 @@ public class NftIndustryInfo extends BaseEntity{
     // 主键
     private Long id;
     // 标题
+    @Excel(name = "标题")
     private String title;
     // 内容
+    @Excel(name = "内容")
     private String content;
     // 类型，1-快讯，0-文章
+    @Excel(name = "类型")
     private String type;
     // 创建时间
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     // 缩略图url
-    private String imageUrl;
+    private String logo;
     // 标签
+    @Excel(name = "标签")
     private String tags;
-    // 发布平台
-    private String platform;
     // 作者
+    @Excel(name = "作者")
     private String author;
+
+    @Excel(name = "内容来源")
+    private String contentSource;
+    @Excel(name = "链接")
+    private String link;
+
+    private String cover;
+
+    public String getContentSource() {
+        return contentSource;
+    }
+
+    public void setContentSource(String contentSource) {
+        this.contentSource = contentSource;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
 
     public Long getId() {
         return id;
@@ -73,12 +108,12 @@ public class NftIndustryInfo extends BaseEntity{
         this.createTime = createTime;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getLogo() {
+        return logo;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
     public String getTags() {
@@ -89,19 +124,28 @@ public class NftIndustryInfo extends BaseEntity{
         this.tags = tags;
     }
 
-    public String getPlatform() {
-        return platform;
-    }
-
-    public void setPlatform(String platform) {
-        this.platform = platform;
-    }
-
     public String getAuthor() {
         return author;
     }
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    @Override
+    public String toString() {
+        return "NftIndustryInfo{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", type='" + type + '\'' +
+                ", createTime=" + createTime +
+                ", logo='" + logo + '\'' +
+                ", tags='" + tags + '\'' +
+                ", author='" + author + '\'' +
+                ", contentSource='" + contentSource + '\'' +
+                ", link='" + link + '\'' +
+                ", cover='" + cover + '\'' +
+                '}';
     }
 }

@@ -45,7 +45,6 @@ service.interceptors.request.use(config => {
   }
   return config
 }, error => {
-    console.log(error)
     Promise.reject(error)
 })
 
@@ -105,9 +104,6 @@ service.interceptors.response.use(res => {
 // 通用下载方法
 export function download(url, params, filename) {
   return service.post(url, params, {
-    transformRequest: [(params) => {
-      return tansParams(params)
-    }],
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
     },

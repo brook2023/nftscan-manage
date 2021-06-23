@@ -14,6 +14,7 @@ import com.ruoyi.system.service.INftIndustryInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -39,7 +40,6 @@ public class NftIndustryInfoController extends BaseController{
     public TableDataInfo list(NftIndustryInfo info)
     {
         startPage();
-        info.setCreateBy(SecurityUtils.getUsername());
         List<NftIndustryInfo> list = nftIndustryInfoService.selectInfoList(info);
         return getDataTable(list);
     }
@@ -96,5 +96,18 @@ public class NftIndustryInfoController extends BaseController{
         List<NftIndustryInfo> list = nftIndustryInfoService.selectInfoList(info);
         ExcelUtil<NftIndustryInfo> util = new ExcelUtil<NftIndustryInfo>(NftIndustryInfo.class);
         util.exportExcel(response, list, "资讯数据");
+    }
+
+    @Log(title = "资讯管理", businessType = BusinessType.IMPORT)
+    @PreAuthorize(hasPermi = "system:info:import")
+    @PostMapping("/importData")
+    public AjaxResult importData(MultipartFile file) throws Exception
+    {
+        ExcelUtil<NftIndustryInfo> util = new ExcelUtil<>(NftIndustryInfo.class);
+        List<NftIndustryInfo> infoList = util.importExcel(file.getInputStream());
+
+        String operName = SecurityUtils.getUsername();
+        String message = nftIndustryInfoService.importInfo(infoList, operName);
+        return AjaxResult.success(message);
     }
 }

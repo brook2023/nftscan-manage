@@ -438,7 +438,7 @@ public class SysUserServiceImpl implements ISysUserService
                 else
                 {
                     failureNum++;
-                    failureMsg.append("<br/>" + failureNum + "、账号 " + user.getUserName() + " 已存在");
+                    failureMsg.append("<br/>\" + failureNum + \"、账号 " + user.getUserName() + " 已存在");
                 }
             }
             catch (Exception e)
