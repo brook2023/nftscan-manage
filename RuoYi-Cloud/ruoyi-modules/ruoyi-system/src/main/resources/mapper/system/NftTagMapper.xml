@@ -53,4 +53,11 @@
         </foreach>
     </select>
 
+    <select id="getTagsByName" parameterType="string" resultType="string">
+        select GROUP_CONCAT(id) from nft_tag_info where tag in
+        <foreach collection="array" item="tag" open="(" separator="," close=")">
+            #{tag}
+        </foreach>
+    </select>
+
 </mapper>

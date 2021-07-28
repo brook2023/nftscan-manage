@@ -50,7 +50,7 @@
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="assetList" @selection-change="handleSelectionChange" tooltip-effect="dark">
+    <el-table v-loading="loading" :data="assetList" stripe @selection-change="handleSelectionChange" tooltip-effect="dark">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="铸造合约地址" align="center" prop="methodContract" show-overflow-tooltip/>
       <el-table-column label="NFT资产地址" align="center" prop="tokenContract" show-overflow-tooltip/>
@@ -90,9 +90,14 @@
           <el-input v-model="form.tokenId" readonly/>
         </el-form-item>
         <el-form-item label="标签" prop="tag">
-          <el-checkbox-group v-model="form.tag">
-            <el-checkbox v-for="item in tagOptions" :label="item.id" :key="item.tag">{{item.tag}}</el-checkbox>
-          </el-checkbox-group>
+          <el-select class="myOption" v-model="form.tag" filterable multiple placeholder="请选择">
+            <el-option
+              v-for="item in tagOptions"
+              :key="item.id"
+              :label="item.tag"
+              :value="item.id">
+            </el-option>
+          </el-select>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -147,8 +152,7 @@ export default {
       // 表单校验
       rules: {
       },
-      tagOptions: [],
-      testOptions: ['策略游戏','梦幻足球','加密艺术']
+      tagOptions: []
     };
   },
   created() {
@@ -264,3 +268,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+  .myOption{
+    width: 100%;
+  }
+</style>

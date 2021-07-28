@@ -25,6 +25,43 @@ public class NftPlatform extends BaseEntity {
     private String descriptionEn;
     private String descriptionCn;
     private String type;
+    private String isHot;
+    private String recommendEn;
+    private String recommendCn;
+
+    private String addressType;
+
+    public String getAddressType() {
+        return addressType;
+    }
+
+    public void setAddressType(String addressType) {
+        this.addressType = addressType;
+    }
+
+    public String getRecommendEn() {
+        return recommendEn;
+    }
+
+    public void setRecommendEn(String recommendEn) {
+        this.recommendEn = recommendEn;
+    }
+
+    public String getRecommendCn() {
+        return recommendCn;
+    }
+
+    public void setRecommendCn(String recommendCn) {
+        this.recommendCn = recommendCn;
+    }
+
+    public String getIsHot() {
+        return isHot;
+    }
+
+    public void setIsHot(String isHot) {
+        this.isHot = isHot;
+    }
 
     public Long getId() {
         return id;

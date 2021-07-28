@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.NftscanFeedbackMapper">
+    
+    <resultMap type="NftscanFeedback" id="NftscanFeedbackResult">
+        <result property="id"    column="id"    />
+        <result property="opinion"    column="opinion"    />
+        <result property="ip"    column="ip"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectNftscanFeedbackVo">
+        select id, opinion, ip, create_time from nftscan_feedback
+    </sql>
+
+    <select id="selectNftscanFeedbackList" parameterType="NftscanFeedback" resultMap="NftscanFeedbackResult">
+        <include refid="selectNftscanFeedbackVo"/>
+        <where>  
+            <if test="opinion != null  and opinion != ''"> and opinion = #{opinion}</if>
+            <if test="ip != null  and ip != ''"> and ip = #{ip}</if>
+        </where>
+    </select>
+    
+    <select id="selectNftscanFeedbackById" parameterType="Long" resultMap="NftscanFeedbackResult">
+        <include refid="selectNftscanFeedbackVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertNftscanFeedback" parameterType="NftscanFeedback" useGeneratedKeys="true" keyProperty="id">
+        insert into nftscan_feedback
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="opinion != null">opinion,</if>
+            <if test="ip != null">ip,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="opinion != null">#{opinion},</if>
+            <if test="ip != null">#{ip},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateNftscanFeedback" parameterType="NftscanFeedback">
+        update nftscan_feedback
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="opinion != null">opinion = #{opinion},</if>
+            <if test="ip != null">ip = #{ip},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteNftscanFeedbackById" parameterType="Long">
+        delete from nftscan_feedback where id = #{id}
+    </delete>
+
+    <delete id="deleteNftscanFeedbackByIds" parameterType="String">
+        delete from nftscan_feedback where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

@@ -19,6 +19,10 @@
         <result property="descriptionEn"     column="description_en"    />
         <result property="descriptionCn"     column="description_cn"    />
         <result property="type"     column="type"    />
+        <result property="isHot"     column="is_hot"    />
+        <result property="recommendEn"     column="recommend_en"    />
+        <result property="recommendCn"     column="recommend_cn"    />
+        <result property="addressType"     column="address_type"    />
 
     </resultMap>
 
@@ -28,38 +32,50 @@
         <if test="platform != null and platform != ''">
             AND platform like concat('%', #{platform}, '%')
         </if>
+        <if test="addressType != null and addressType != ''">
+            AND address_type = #{addressType}
+        </if>
+        order by platform
     </select>
 
 
     <insert id="insertPlatform" parameterType="nftPlatform">
         insert into nft_platform_info(
-        <if test="platform != null and platform != ''">platform,</if>
-        <if test="website != null and website != ''">website,</if>
-        <if test="contractAddress != null and contractAddress != ''">contract_address,</if>
-        <if test="tags != null and tags != ''">tags,</if>
-        <if test="twitter != null and twitter != ''">twitter,</if>
-        <if test="email != null and email != ''">email,</if>
-        <if test="discord != null and discord != ''">discord,</if>
-        <if test="telegram != null and telegram != ''">telegram,</if>
-        <if test="github != null and github != ''">github,</if>
-        <if test="medium != null and medium != ''">medium,</if>
-        <if test="type != null and type != ''">type,</if>
-        <if test="descriptionEn != null and descriptionEn != ''">description_en,</if>
-        <if test="descriptionCn != null and descriptionCn != ''">description_cn</if>
+        platform,
+        website,
+        contract_address,
+        tags,
+        twitter,
+        email,
+        discord,
+        telegram,
+        github,
+        medium,
+        type,
+        description_en,
+        description_cn,
+        is_hot,
+        recommend_en,
+        recommend_cn,
+        address_type
         )values(
-        <if test="platform != null and platform != ''">#{platform},</if>
-        <if test="website != null and website != ''">#{website},</if>
-        <if test="contractAddress != null and contractAddress != ''">#{contractAddress},</if>
-        <if test="tags != null and tags != ''">#{tags},</if>
-        <if test="twitter != null and twitter != ''">#{twitter},</if>
-        <if test="email != null and email != ''">#{email},</if>
-        <if test="discord != null and discord != ''">#{discord},</if>
-        <if test="telegram != null and telegram != ''">#{telegram},</if>
-        <if test="github != null and github != ''">#{github},</if>
-        <if test="medium != null and medium != ''">#{medium},</if>
-        <if test="type != null and type != ''">#{type},</if>
-        <if test="descriptionEn != null and descriptionEn != ''">#{descriptionEn},</if>
-        <if test="descriptionCn != null and descriptionCn != ''">#{descriptionCn}</if>
+        #{platform},
+        #{website},
+        #{contractAddress},
+        #{tags},
+        #{twitter},
+        #{email},
+        #{discord},
+        #{telegram},
+        #{github},
+        #{medium},
+        #{type},
+        #{descriptionEn},
+        #{descriptionCn},
+        #{isHot},
+        #{recommendEn},
+        #{recommendCn},
+        #{addressType}
         )
     </insert>
 
@@ -73,19 +89,8 @@
     <update id="updatePlatform" parameterType="nftPlatform">
         update nft_platform_info
         <set>
-            <if test="platform != null and platform != ''">platform=#{platform},</if>
-            <if test="website != null and website != ''">website=#{website},</if>
-            <if test="contractAddress != null and contractAddress != ''">contract_address=#{contractAddress},</if>
-            <if test="tags != null and tags != ''">tags=#{tags},</if>
-            <if test="twitter != null and twitter != ''">twitter=#{twitter},</if>
-            <if test="email != null and email != ''">email=#{email},</if>
-            <if test="discord != null and discord != ''">discord=#{discord},</if>
-            <if test="telegram != null and telegram != ''">telegram=#{telegram},</if>
-            <if test="github != null and github != ''">github=#{github},</if>
-            <if test="medium != null and medium != ''">medium=#{medium},</if>
-            <if test="type != null and type != ''">type=#{type},</if>
-            <if test="descriptionEn != null and descriptionEn != ''">description_en=#{descriptionEn},</if>
-            <if test="descriptionCn != null and descriptionCn != ''">description_cn=#{descriptionCn},</if>
+            contract_address=#{contractAddress},
+            address_type=#{addressType}
         </set>
         where id= #{id}
     </update>
@@ -94,5 +99,31 @@
         select * from nft_platform_info
         where id = #{platformId}
     </select>
+
+    <update id="updatePlatformIsHot" parameterType="nftPlatform">
+        update nft_platform_info set is_hot=#{isHot} where platform=#{platform}
+    </update>
+
+    <update id="updatePlatformByName" parameterType="nftPlatform">
+        update nft_platform_info
+        <set>
+            platform=#{platform},
+            website=#{website},
+            tags=#{tags},
+            twitter=#{twitter},
+            email=#{email},
+            discord=#{discord},
+            telegram=#{telegram},
+            github=#{github},
+            medium=#{medium},
+            type=#{type},
+            description_en=#{descriptionEn},
+            description_cn=#{descriptionCn},
+            is_hot=#{isHot},
+            recommend_en=#{recommendEn},
+            recommend_cn=#{recommendCn}
+        </set>
+        where platform= #{platform}
+    </update>
 
 </mapper>

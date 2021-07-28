@@ -1,21 +1,5 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="标签名称" prop="tag">
-        <el-input
-          v-model="queryParams.tag"
-          placeholder="请输入标签名称"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
-      </el-form-item>
-    </el-form>
-
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
         <el-button
@@ -24,7 +8,7 @@
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['system:tag:add']"
+          v-hasPermi="['system:hot:add']"
         >新增</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -35,7 +19,7 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['system:tag:edit']"
+          v-hasPermi="['system:hot:edit']"
         >修改</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -46,15 +30,27 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['system:tag:remove']"
+          v-hasPermi="['system:hot:remove']"
         >删除</el-button>
+      </el-col>
+      <el-col :span="1.5">
+        <el-button
+          type="warning"
+          plain
+          icon="el-icon-download"
+          size="mini"
+          @click="handleExport"
+          v-hasPermi="['system:hot:export']"
+        >导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="tagList" stripe @selection-change="handleSelectionChange" tooltip-effect="dark">
-      <el-table-column type="selection" width="55" align="center" show-overflow-tooltip/>
-      <el-table-column label="标签" align="center" prop="tag" show-overflow-tooltip/>
+    <el-table v-loading="loading" :data="hotList" @selection-change="handleSelectionChange">
+      <el-table-column type="selection" width="55" align="center" />
+      <el-table-column label="平台" align="center" prop="platformId" />
+      <el-table-column label="描述" align="center" prop="descriptionEn" />
+      <el-table-column label="描述" align="center" prop="descriptionCn" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -62,14 +58,14 @@
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-            v-hasPermi="['system:tag:edit']"
+            v-hasPermi="['system:hot:edit']"
           >修改</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['system:tag:remove']"
+            v-hasPermi="['system:hot:remove']"
           >删除</el-button>
         </template>
       </el-table-column>
@@ -83,13 +79,20 @@
       @pagination="getList"
     />
 
-    <!-- 添加或修改标签对话框 -->
+    <!-- 添加或修改热点推荐对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="标签名称" prop="tag">
-          <el-input v-model="form.tag" placeholder="请输入标签名称" />
+        <el-form-item label="描述">
+          <editor v-model="form.descriptionEn" :min-height="192"/>
         </el-form-item>
-
+        <el-form-item label="描述">
+          <editor v-model="form.descriptionCn" :min-height="192"/>
+        </el-form-item>
+        <el-form-item label="平台id" prop="platformId">
+          <el-select v-model="form.platformId" placeholder="请选择平台id">
+            <el-option label="请选择字典生成" value="" />
+          </el-select>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -100,10 +103,14 @@
 </template>
 
 <script>
-import { listTag, getTag, delTag, addTag, updateTag } from "@/api/system/tag";
+import { listHot, getHot, delHot, addHot, updateHot } from "@/api/system/hot";
+import Editor from '@/components/Editor';
 
 export default {
-  name: "Tag",
+  name: "Hot",
+  components: {
+    Editor,
+  },
   data() {
     return {
       // 遮罩层
@@ -118,8 +125,8 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 标签表格数据
-      tagList: [],
+      // 热点推荐表格数据
+      hotList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -128,29 +135,26 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        tag: undefined
+        descriptionEn: null,
+        descriptionCn: null,
+        platformId: null
       },
       // 表单参数
       form: {},
       // 表单校验
       rules: {
-        tag: [
-          { required: true, message: "标签不能为空", trigger: "blur" }
-        ]
       }
     };
   },
-
   created() {
     this.getList();
   },
-
   methods: {
-    /** 查询标签列表 */
+    /** 查询热点推荐列表 */
     getList() {
       this.loading = true;
-      listTag(this.queryParams).then(response => {
-        this.tagList = response.rows;
+      listHot(this.queryParams).then(response => {
+        this.hotList = response.rows;
         this.total = response.total;
         this.loading = false;
       });
@@ -163,8 +167,10 @@ export default {
     // 表单重置
     reset() {
       this.form = {
-        id: undefined,
-        tag: undefined
+        id: null,
+        descriptionEn: null,
+        descriptionCn: null,
+        platformId: null
       };
       this.resetForm("form");
     },
@@ -181,37 +187,37 @@ export default {
     // 多选框选中数据
     handleSelectionChange(selection) {
       this.ids = selection.map(item => item.id)
-      this.single = selection.length!=1
+      this.single = selection.length!==1
       this.multiple = !selection.length
     },
     /** 新增按钮操作 */
     handleAdd() {
       this.reset();
       this.open = true;
-      this.title = "添加标签";
+      this.title = "添加热点推荐";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
-      const tagId = row.id || this.ids
-      getTag(tagId).then(response => {
+      const id = row.id || this.ids
+      getHot(id).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改标签";
+        this.title = "修改热点推荐";
       });
     },
     /** 提交按钮 */
-    submitForm: function() {
+    submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.id != undefined) {
-            updateTag(this.form).then(response => {
+          if (this.form.id != null) {
+            updateHot(this.form).then(response => {
               this.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
-            addTag(this.form).then(response => {
+            addHot(this.form).then(response => {
               this.msgSuccess("新增成功");
               this.open = false;
               this.getList();
@@ -222,17 +228,23 @@ export default {
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      const tagIds = row.id || this.ids;
-      this.$confirm('是否确认删除标签编号为"' + tagIds + '"的数据项?', "警告", {
+      const ids = row.id || this.ids;
+      this.$confirm('是否确认删除热点推荐编号为"' + ids + '"的数据项?', "警告", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning"
         }).then(function() {
-          return delTag(tagIds);
+          return delHot(ids);
         }).then(() => {
           this.getList();
           this.msgSuccess("删除成功");
         })
+    },
+    /** 导出按钮操作 */
+    handleExport() {
+      this.download('system/hot/export', {
+        ...this.queryParams
+      }, `system_hot.xlsx`)
     }
   }
 };

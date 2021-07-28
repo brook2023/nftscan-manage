@@ -25,11 +25,19 @@ export function addPlatform(data) {
     data: data
   })
 }
-
 // 修改岗位
 export function updatePlatform(data) {
   return request({
     url: '/system/platform',
+    method: 'put',
+    data: data
+  })
+}
+
+// 修改岗位
+export function updatePlatformByName(data) {
+  return request({
+    url: '/system/platform/updatePlatformByName',
     method: 'put',
     data: data
   })
@@ -40,5 +48,18 @@ export function delPlatform(platformId) {
   return request({
     url: '/system/platform/' + platformId,
     method: 'delete'
+  })
+}
+
+// 状态修改
+export function changePlatformStatus(platform, isHot) {
+  const data = {
+    platform,
+    isHot
+  }
+  return request({
+    url: '/system/platform/changeStatus',
+    method: 'put',
+    data: data
   })
 }

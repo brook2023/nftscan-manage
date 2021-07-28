@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.UserNftFoundryContractMapper">
+    
+    <resultMap type="UserNftFoundryContract" id="UserNftFoundryContractResult">
+        <result property="id"    column="id"    />
+        <result property="blockchainNetwork"    column="blockchain_network"    />
+        <result property="foundryContractAddress"    column="foundry_contract_address"    />
+        <result property="foundryContractType"    column="foundry_contract_type"    />
+        <result property="foundryContractName"    column="foundry_contract_name"    />
+        <result property="officialWebsite"    column="official_website"    />
+        <result property="foundryContractDescription"    column="foundry_contract_description"    />
+        <result property="twitter"    column="twitter"    />
+        <result property="email"    column="email"    />
+        <result property="uri"    column="uri"    />
+        <result property="metadata"    column="metadata"    />
+    </resultMap>
+
+    <sql id="selectUserNftFoundryContractVo">
+        select id, blockchain_network, foundry_contract_address, (select dict_label from sys_dict_data where dict_type = 'contract_category' and dict_value = foundry_contract_type) as foundry_contract_type, foundry_contract_name, official_website, foundry_contract_description, twitter, email, uri, metadata from user_nft_foundry_contract
+    </sql>
+
+    <select id="selectUserNftFoundryContractList" parameterType="UserNftFoundryContract" resultMap="UserNftFoundryContractResult">
+        <include refid="selectUserNftFoundryContractVo"/>
+        <where>  
+            <if test="blockchainNetwork != null  and blockchainNetwork != ''"> and blockchain_network = #{blockchainNetwork}</if>
+            <if test="foundryContractAddress != null  and foundryContractAddress != ''"> and foundry_contract_address = #{foundryContractAddress}</if>
+            <if test="foundryContractType != null  and foundryContractType != ''"> and foundry_contract_type = #{foundryContractType}</if>
+            <if test="foundryContractName != null  and foundryContractName != ''"> and foundry_contract_name like concat('%', #{foundryContractName}, '%')</if>
+            <if test="officialWebsite != null  and officialWebsite != ''"> and official_website = #{officialWebsite}</if>
+            <if test="foundryContractDescription != null  and foundryContractDescription != ''"> and foundry_contract_description = #{foundryContractDescription}</if>
+            <if test="twitter != null  and twitter != ''"> and twitter = #{twitter}</if>
+            <if test="email != null  and email != ''"> and email = #{email}</if>
+            <if test="uri != null  and uri != ''"> and uri = #{uri}</if>
+            <if test="metadata != null  and metadata != ''"> and metadata = #{metadata}</if>
+        </where>
+    </select>
+    
+    <select id="selectUserNftFoundryContractById" parameterType="Long" resultMap="UserNftFoundryContractResult">
+        <include refid="selectUserNftFoundryContractVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertUserNftFoundryContract" parameterType="UserNftFoundryContract" useGeneratedKeys="true" keyProperty="id">
+        insert into user_nft_foundry_contract
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="blockchainNetwork != null">blockchain_network,</if>
+            <if test="foundryContractAddress != null">foundry_contract_address,</if>
+            <if test="foundryContractType != null">foundry_contract_type,</if>
+            <if test="foundryContractName != null">foundry_contract_name,</if>
+            <if test="officialWebsite != null">official_website,</if>
+            <if test="foundryContractDescription != null">foundry_contract_description,</if>
+            <if test="twitter != null">twitter,</if>
+            <if test="email != null">email,</if>
+            <if test="uri != null">uri,</if>
+            <if test="metadata != null">metadata,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="blockchainNetwork != null">#{blockchainNetwork},</if>
+            <if test="foundryContractAddress != null">#{foundryContractAddress},</if>
+            <if test="foundryContractType != null">#{foundryContractType},</if>
+            <if test="foundryContractName != null">#{foundryContractName},</if>
+            <if test="officialWebsite != null">#{officialWebsite},</if>
+            <if test="foundryContractDescription != null">#{foundryContractDescription},</if>
+            <if test="twitter != null">#{twitter},</if>
+            <if test="email != null">#{email},</if>
+            <if test="uri != null">#{uri},</if>
+            <if test="metadata != null">#{metadata},</if>
+         </trim>
+    </insert>
+
+    <update id="updateUserNftFoundryContract" parameterType="UserNftFoundryContract">
+        update user_nft_foundry_contract
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="blockchainNetwork != null">blockchain_network = #{blockchainNetwork},</if>
+            <if test="foundryContractAddress != null">foundry_contract_address = #{foundryContractAddress},</if>
+            <if test="foundryContractType != null">foundry_contract_type = #{foundryContractType},</if>
+            <if test="foundryContractName != null">foundry_contract_name = #{foundryContractName},</if>
+            <if test="officialWebsite != null">official_website = #{officialWebsite},</if>
+            <if test="foundryContractDescription != null">foundry_contract_description = #{foundryContractDescription},</if>
+            <if test="twitter != null">twitter = #{twitter},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="uri != null">uri = #{uri},</if>
+            <if test="metadata != null">metadata = #{metadata},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUserNftFoundryContractById" parameterType="Long">
+        delete from user_nft_foundry_contract where id = #{id}
+    </delete>
+
+    <delete id="deleteUserNftFoundryContractByIds" parameterType="String">
+        delete from user_nft_foundry_contract where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

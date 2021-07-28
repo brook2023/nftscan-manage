@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.NftHotRecommendMapper">
+    
+    <resultMap type="NftHotRecommend" id="NftHotRecommendResult">
+        <result property="id"    column="id"    />
+        <result property="descriptionEn"    column="description_en"    />
+        <result property="descriptionCn"    column="description_cn"    />
+        <result property="platformId"    column="platform_id"    />
+    </resultMap>
+
+    <sql id="selectNftHotRecommendVo">
+        select id, description_en, description_cn, platform_id from nft_hot_recommend
+    </sql>
+
+    <select id="selectNftHotRecommendList" parameterType="NftHotRecommend" resultMap="NftHotRecommendResult">
+        <include refid="selectNftHotRecommendVo"/>
+        <where>  
+            <if test="descriptionEn != null  and descriptionEn != ''"> and description_en = #{descriptionEn}</if>
+            <if test="descriptionCn != null  and descriptionCn != ''"> and description_cn = #{descriptionCn}</if>
+            <if test="platformId != null "> and platform_id = #{platformId}</if>
+        </where>
+    </select>
+    
+    <select id="selectNftHotRecommendById" parameterType="Long" resultMap="NftHotRecommendResult">
+        <include refid="selectNftHotRecommendVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertNftHotRecommend" parameterType="NftHotRecommend" useGeneratedKeys="true" keyProperty="id">
+        insert into nft_hot_recommend
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="descriptionEn != null">description_en,</if>
+            <if test="descriptionCn != null">description_cn,</if>
+            <if test="platformId != null">platform_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="descriptionEn != null">#{descriptionEn},</if>
+            <if test="descriptionCn != null">#{descriptionCn},</if>
+            <if test="platformId != null">#{platformId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateNftHotRecommend" parameterType="NftHotRecommend">
+        update nft_hot_recommend
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="descriptionEn != null">description_en = #{descriptionEn},</if>
+            <if test="descriptionCn != null">description_cn = #{descriptionCn},</if>
+            <if test="platformId != null">platform_id = #{platformId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteNftHotRecommendById" parameterType="Long">
+        delete from nft_hot_recommend where id = #{id}
+    </delete>
+
+    <delete id="deleteNftHotRecommendByIds" parameterType="String">
+        delete from nft_hot_recommend where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

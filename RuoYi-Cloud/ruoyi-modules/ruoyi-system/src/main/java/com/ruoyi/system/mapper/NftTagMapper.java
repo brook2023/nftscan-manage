@@ -21,4 +21,6 @@ public interface NftTagMapper {
     NftTag selectTagById(Long tagId);
 
     String getTagsById(String[] arr);
+
+    String getTagsByName(String[] tagsArr);
 }

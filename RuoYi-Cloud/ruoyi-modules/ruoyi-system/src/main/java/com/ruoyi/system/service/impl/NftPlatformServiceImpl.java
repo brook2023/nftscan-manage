@@ -31,6 +31,7 @@ public class NftPlatformServiceImpl implements INftPlatformService {
 
     @Override
     public int updatePlatform(NftPlatform platform) {
+        // 更新平台信息
         return nftPlatformMapper.updatePlatform(platform);
     }
 
@@ -42,5 +43,15 @@ public class NftPlatformServiceImpl implements INftPlatformService {
     @Override
     public NftPlatform selectPlatformById(Long platformId) {
         return nftPlatformMapper.selectPlatformById(platformId);
+    }
+
+    @Override
+    public int updatePlatformIsHot(NftPlatform platform) {
+        return nftPlatformMapper.updatePlatformIsHot(platform);
+    }
+
+    @Override
+    public int updatePlatformByName(NftPlatform platform) {
+        return nftPlatformMapper.updatePlatformByName(platform);
     }
 }

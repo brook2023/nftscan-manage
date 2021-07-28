@@ -48,4 +48,9 @@ public class NftTagServiceImpl implements INftTagService {
     public String getTagsById(String[] arr) {
         return nftTagMapper.getTagsById(arr);
     }
+
+    @Override
+    public String getTagsByName(String[] tagsArr) {
+        return nftTagMapper.getTagsByName(tagsArr);
+    }
 }
