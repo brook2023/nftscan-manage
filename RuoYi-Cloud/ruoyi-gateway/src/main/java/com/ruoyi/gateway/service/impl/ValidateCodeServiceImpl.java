@@ -4,7 +4,6 @@ import com.google.code.kaptcha.Producer;
 import com.ruoyi.common.core.constant.Constants;
 import com.ruoyi.common.core.exception.CaptchaException;
 import com.ruoyi.common.core.utils.IdUtils;
-import com.ruoyi.common.core.utils.StringUtils;
 import com.ruoyi.common.core.utils.sign.Base64;
 import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.common.redis.service.RedisService;
@@ -89,7 +88,7 @@ public class ValidateCodeServiceImpl implements ValidateCodeService
     @Override
     public void checkCapcha(String code, String uuid) throws CaptchaException
     {
-        if (StringUtils.isEmpty(code))
+/*        if (StringUtils.isEmpty(code))
         {
             throw new CaptchaException("验证码不能为空");
         }
@@ -104,6 +103,6 @@ public class ValidateCodeServiceImpl implements ValidateCodeService
         if (!code.equalsIgnoreCase(captcha))
         {
             throw new CaptchaException("验证码错误");
-        }
+        }*/
     }
 }
