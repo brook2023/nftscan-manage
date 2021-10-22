@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.NftApiUserMapper">
+    
+    <resultMap type="NftApiUser" id="NftApiUserResult">
+        <result property="id"    column="id"    />
+        <result property="email"    column="email"    />
+        <result property="password"    column="password"    />
+        <result property="apiKey"    column="api_key"    />
+        <result property="apiSecret"    column="api_secret"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="lastLoginTime"    column="last_login_time"    />
+    </resultMap>
+
+    <sql id="selectNftApiUserVo">
+        select id, email, password, api_key, api_secret, create_time, last_login_time from nft_api_user
+    </sql>
+
+    <select id="selectNftApiUserList" parameterType="NftApiUser" resultMap="NftApiUserResult">
+        <include refid="selectNftApiUserVo"/>
+        <where>  
+            <if test="email != null  and email != ''"> and email like concat('%',#{email},'%')</if>
+            <if test="createTime != null "> and create_time = date_format(#{createTime},'%Y-%m-%d')</if>
+
+        </where>
+        order by create_time DESC
+    </select>
+    
+    <select id="selectNftApiUserById" parameterType="Long" resultMap="NftApiUserResult">
+        <include refid="selectNftApiUserVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertNftApiUser" parameterType="NftApiUser" useGeneratedKeys="true" keyProperty="id">
+        insert into nft_api_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="email != null">email,</if>
+            <if test="password != null">password,</if>
+            <if test="apiKey != null">api_key,</if>
+            <if test="apiSecret != null">api_secret,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="lastLoginTime != null">last_login_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="email != null">#{email},</if>
+            <if test="password != null">#{password},</if>
+            <if test="apiKey != null">#{apiKey},</if>
+            <if test="apiSecret != null">#{apiSecret},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="lastLoginTime != null">#{lastLoginTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateNftApiUser" parameterType="NftApiUser">
+        update nft_api_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="email != null">email = #{email},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="apiKey != null">api_key = #{apiKey},</if>
+            <if test="apiSecret != null">api_secret = #{apiSecret},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="lastLoginTime != null">last_login_time = #{lastLoginTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteNftApiUserById" parameterType="Long">
+        delete from nft_api_user where id = #{id}
+    </delete>
+
+    <delete id="deleteNftApiUserByIds" parameterType="String">
+        delete from nft_api_user where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

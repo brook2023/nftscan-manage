@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.NftApiUserDayCountMapper">
+    
+    <resultMap type="NftApiUserDayCount" id="NftApiUserDayCountResult">
+        <result property="id"    column="id"    />
+        <result property="apiUserId"    column="api_user_id"    />
+        <result property="apiUserCount"    column="api_user_count"    />
+        <result property="apiUserMethodCount"    column="api_user_method_count"    />
+        <result property="apiUser24Count"    column="api_user_24_count"    />
+        <result property="apiUserSize"    column="api_user_size"    />
+        <result property="apiCallTime"    column="api_call_time"    />
+    </resultMap>
+
+    <sql id="selectNftApiUserDayCountVo">
+        select id, api_user_id, api_user_count, api_user_method_count, api_user_24_count, api_user_size, api_call_time from nft_api_user_day_count
+    </sql>
+
+    <select id="selectNftApiUserDayCountList" parameterType="NftApiUserDayCount" resultMap="NftApiUserDayCountResult">
+        <include refid="selectNftApiUserDayCountVo"/>
+        <where>  
+            <if test="apiCallTime != null "> and api_call_time = #{apiCallTime}</if>
+
+        </where>
+        order by  api_call_time DESC
+    </select>
+    
+    <select id="selectNftApiUserDayCountById" parameterType="Long" resultMap="NftApiUserDayCountResult">
+        <include refid="selectNftApiUserDayCountVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertNftApiUserDayCount" parameterType="NftApiUserDayCount" useGeneratedKeys="true" keyProperty="id">
+        insert into nft_api_user_day_count
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="apiUserId != null">api_user_id,</if>
+            <if test="apiUserCount != null">api_user_count,</if>
+            <if test="apiUserMethodCount != null">api_user_method_count,</if>
+            <if test="apiUser24Count != null">api_user_24_count,</if>
+            <if test="apiUserSize != null">api_user_size,</if>
+            <if test="apiCallTime != null">api_call_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="apiUserId != null">#{apiUserId},</if>
+            <if test="apiUserCount != null">#{apiUserCount},</if>
+            <if test="apiUserMethodCount != null">#{apiUserMethodCount},</if>
+            <if test="apiUser24Count != null">#{apiUser24Count},</if>
+            <if test="apiUserSize != null">#{apiUserSize},</if>
+            <if test="apiCallTime != null">#{apiCallTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateNftApiUserDayCount" parameterType="NftApiUserDayCount">
+        update nft_api_user_day_count
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="apiUserId != null">api_user_id = #{apiUserId},</if>
+            <if test="apiUserCount != null">api_user_count = #{apiUserCount},</if>
+            <if test="apiUserMethodCount != null">api_user_method_count = #{apiUserMethodCount},</if>
+            <if test="apiUser24Count != null">api_user_24_count = #{apiUser24Count},</if>
+            <if test="apiUserSize != null">api_user_size = #{apiUserSize},</if>
+            <if test="apiCallTime != null">api_call_time = #{apiCallTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteNftApiUserDayCountById" parameterType="Long">
+        delete from nft_api_user_day_count where id = #{id}
+    </delete>
+
+    <delete id="deleteNftApiUserDayCountByIds" parameterType="String">
+        delete from nft_api_user_day_count where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

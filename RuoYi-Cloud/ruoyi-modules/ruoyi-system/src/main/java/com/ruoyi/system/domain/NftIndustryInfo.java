@@ -100,6 +100,7 @@ public class NftIndustryInfo extends BaseEntity{
         this.type = type;
     }
 
+
     public Date getCreateTime() {
         return createTime;
     }
