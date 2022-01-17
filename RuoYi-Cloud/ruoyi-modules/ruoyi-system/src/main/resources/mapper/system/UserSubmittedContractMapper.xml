@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.UserSubmittedContractMapper">
+    
+    <resultMap type="UserSubmittedContract" id="UserSubmittedContractResult">
+        <result property="contract"    column="contract"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="status"    column="status"    />
+        <result property="logo"    column="logo"    />
+        <result property="contractName"    column="contract_name"    />
+        <result property="contractCategory"    column="contract_category"    />
+        <result property="description"    column="description"    />
+        <result property="twitter"    column="twitter"    />
+        <result property="discord"    column="discord"    />
+        <result property="website"    column="website"    />
+        <result property="telegram"    column="telegram"    />
+        <result property="medium"    column="medium"    />
+        <result property="mirror"    column="mirror"    />
+        <result property="facebook"    column="facebook"    />
+        <result property="github"    column="github"    />
+        <result property="youtube"    column="youtube"    />
+        <result property="twitch"    column="twitch"    />
+        <result property="metadataUrl"    column="metadata_url"    />
+        <result property="statement"    column="statement"    />
+        <result property="email"    column="email"    />
+        <result property="ins"    column="ins"    />
+    </resultMap>
+
+    <select id="selectUserSubmittedContractList" parameterType="UserSubmittedContract" resultMap="UserSubmittedContractResult">
+        <include refid="selectUserSubmittedContractVo"/>
+        <where>
+            <if test="contract != null  and contract != ''"> and contract = #{contract}</if>
+            <if test="logo != null  and logo != ''"> and logo = #{logo}</if>
+            <if test="contractName != null  and contractName != ''"> and contract_name like concat('%', #{contractName}, '%')</if>
+            <if test="contractCategory != null  and contractCategory != ''"> and contract_category = #{contractCategory}</if>
+            <if test="description != null  and description != ''"> and description = #{description}</if>
+            <if test="twitter != null  and twitter != ''"> and twitter = #{twitter}</if>
+            <if test="discord != null  and discord != ''"> and discord = #{discord}</if>
+            <if test="website != null  and website != ''"> and website = #{website}</if>
+            <if test="telegram != null  and telegram != ''"> and telegram = #{telegram}</if>
+            <if test="medium != null  and medium != ''"> and medium = #{medium}</if>
+            <if test="mirror != null  and mirror != ''"> and mirror = #{mirror}</if>
+            <if test="facebook != null  and facebook != ''"> and facebook = #{facebook}</if>
+            <if test="github != null  and github != ''"> and github = #{github}</if>
+            <if test="youtube != null  and youtube != ''"> and youtube = #{youtube}</if>
+            <if test="twitch != null  and twitch != ''"> and twitch = #{twitch}</if>
+            <if test="metadataUrl != null  and metadataUrl != ''"> and metadata_url = #{metadataUrl}</if>
+            <if test="statement != null  and statement != ''"> and statement = #{statement}</if>
+            and status = '0'
+        </where>
+    </select>
+
+    <sql id="selectUserSubmittedContractVo">
+        select id, contract, create_time, status, logo, contract_name, contract_category, description, twitter, discord, website, telegram, medium, mirror, facebook, github, youtube, twitch, metadata_url, statement,email,ins from user_submitted_contract
+    </sql>
+
+    <select id="selectUserSubmittedContractById" parameterType="Integer" resultMap="UserSubmittedContractResult">
+        <include refid="selectUserSubmittedContractVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertUserSubmittedContract" parameterType="UserSubmittedContract" useGeneratedKeys="true" keyProperty="id">
+        insert into user_submitted_contract
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contract != null">contract,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="status != null">status,</if>
+            <if test="logo != null">logo,</if>
+            <if test="contractName != null">contract_name,</if>
+            <if test="contractCategory != null">contract_category,</if>
+            <if test="description != null">description,</if>
+            <if test="twitter != null">twitter,</if>
+            <if test="discord != null">discord,</if>
+            <if test="website != null">website,</if>
+            <if test="telegram != null">telegram,</if>
+            <if test="medium != null">medium,</if>
+            <if test="mirror != null">mirror,</if>
+            <if test="facebook != null">facebook,</if>
+            <if test="github != null">github,</if>
+            <if test="youtube != null">youtube,</if>
+            <if test="twitch != null">twitch,</if>
+            <if test="metadataUrl != null">metadata_url,</if>
+            <if test="statement != null">statement,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contract != null">#{contract},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="status != null">#{status},</if>
+            <if test="logo != null">#{logo},</if>
+            <if test="contractName != null">#{contractName},</if>
+            <if test="contractCategory != null">#{contractCategory},</if>
+            <if test="description != null">#{description},</if>
+            <if test="twitter != null">#{twitter},</if>
+            <if test="discord != null">#{discord},</if>
+            <if test="website != null">#{website},</if>
+            <if test="telegram != null">#{telegram},</if>
+            <if test="medium != null">#{medium},</if>
+            <if test="mirror != null">#{mirror},</if>
+            <if test="facebook != null">#{facebook},</if>
+            <if test="github != null">#{github},</if>
+            <if test="youtube != null">#{youtube},</if>
+            <if test="twitch != null">#{twitch},</if>
+            <if test="metadataUrl != null">#{metadataUrl},</if>
+            <if test="statement != null">#{statement},</if>
+         </trim>
+    </insert>
+
+    <update id="updateUserSubmittedContract" parameterType="UserSubmittedContract">
+        update user_submitted_contract
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="contract != null">contract = #{contract},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="logo != null">logo = #{logo},</if>
+            <if test="contractName != null">contract_name = #{contractName},</if>
+            <if test="contractCategory != null">contract_category = #{contractCategory},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="twitter != null">twitter = #{twitter},</if>
+            <if test="discord != null">discord = #{discord},</if>
+            <if test="website != null">website = #{website},</if>
+            <if test="telegram != null">telegram = #{telegram},</if>
+            <if test="medium != null">medium = #{medium},</if>
+            <if test="mirror != null">mirror = #{mirror},</if>
+            <if test="facebook != null">facebook = #{facebook},</if>
+            <if test="github != null">github = #{github},</if>
+            <if test="youtube != null">youtube = #{youtube},</if>
+            <if test="twitch != null">twitch = #{twitch},</if>
+            <if test="metadataUrl != null">metadata_url = #{metadataUrl},</if>
+            <if test="statement != null">statement = #{statement},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUserSubmittedContractById" parameterType="Integer">
+        delete from user_submitted_contract where id = #{id}
+    </delete>
+
+    <delete id="deleteUserSubmittedContractByIds" parameterType="String">
+        delete from user_submitted_contract where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

@@ -127,14 +127,18 @@ public class SysProfileController extends BaseController
     {
         if (!file.isEmpty())
         {
-            LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
+            //LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
             R<SysFile> fileResult = remoteFileService.upload(file);
             if (StringUtils.isNull(fileResult) || StringUtils.isNull(fileResult.getData()))
             {
                 return AjaxResult.error("文件服务异常，请联系管理员");
             }
             String url = fileResult.getData().getUrl();
-            if (userService.updateUserAvatar(loginUser.getUsername(), url))
+            AjaxResult ajax = AjaxResult.success();
+            ajax.put("imgUrl", url);
+            return ajax;
+
+/*            if (userService.updateUserAvatar(loginUser.getUsername(), url))
             {
                 AjaxResult ajax = AjaxResult.success();
                 ajax.put("imgUrl", url);
@@ -142,7 +146,7 @@ public class SysProfileController extends BaseController
                 loginUser.getSysUser().setAvatar(url);
                 tokenService.setLoginUser(loginUser);
                 return ajax;
-            }
+            }*/
         }
         return AjaxResult.error("上传图片异常，请联系管理员");
     }

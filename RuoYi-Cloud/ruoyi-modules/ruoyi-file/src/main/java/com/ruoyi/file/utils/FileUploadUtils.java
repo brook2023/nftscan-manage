@@ -3,7 +3,6 @@ package com.ruoyi.file.utils;
 import com.ruoyi.common.core.exception.file.FileNameLengthLimitExceededException;
 import com.ruoyi.common.core.exception.file.FileSizeLimitExceededException;
 import com.ruoyi.common.core.exception.file.InvalidExtensionException;
-import com.ruoyi.common.core.utils.DateUtils;
 import com.ruoyi.common.core.utils.IdUtils;
 import com.ruoyi.common.core.utils.StringUtils;
 import com.ruoyi.common.core.utils.file.MimeTypeUtils;
@@ -90,7 +89,7 @@ public class FileUploadUtils
     {
         String fileName = file.getOriginalFilename();
         String extension = getExtension(file);
-        fileName = DateUtils.datePath() + "/" + IdUtils.fastUUID() + "." + extension;
+        fileName = IdUtils.fastUUID() + "." + extension;
         return fileName;
     }
 

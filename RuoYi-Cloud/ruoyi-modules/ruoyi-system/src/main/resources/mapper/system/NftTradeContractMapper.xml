@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.NftTradeContractMapper">
+    
+    <resultMap type="NftTradeContract" id="NftTradeContractResult">
+        <result property="contract"    column="contract"    />
+        <result property="name"    column="name"    />
+        <result property="website"    column="website"    />
+        <result property="twitter"    column="twitter"    />
+        <result property="email"    column="email"    />
+        <result property="discord"    column="discord"    />
+        <result property="telegram"    column="telegram"    />
+        <result property="description"    column="description"    />
+        <result property="github"    column="github"    />
+        <result property="instagram"    column="instagram"    />
+        <result property="tag"    column="tag"    />
+        <result property="balance"    column="balance"    />
+        <result property="deploymentTime"    column="deployment_time"    />
+        <result property="createContract"    column="create_contract"    />
+        <result property="createHash"    column="create_hash"    />
+    </resultMap>
+
+    <sql id="selectNftTradeContractVo">
+        select contract, name, website, twitter, email, discord, telegram, description, github, instagram, tag, balance, deployment_time, create_contract, create_hash from nft_trade_contract
+    </sql>
+
+    <select id="selectNftTradeContractList" parameterType="NftTradeContract" resultMap="NftTradeContractResult">
+        <include refid="selectNftTradeContractVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="website != null  and website != ''"> and website = #{website}</if>
+            <if test="twitter != null  and twitter != ''"> and twitter = #{twitter}</if>
+            <if test="email != null  and email != ''"> and email = #{email}</if>
+            <if test="discord != null  and discord != ''"> and discord = #{discord}</if>
+            <if test="telegram != null  and telegram != ''"> and telegram = #{telegram}</if>
+            <if test="description != null  and description != ''"> and description = #{description}</if>
+            <if test="github != null  and github != ''"> and github = #{github}</if>
+            <if test="instagram != null  and instagram != ''"> and instagram = #{instagram}</if>
+            <if test="tag != null  and tag != ''"> and tag = #{tag}</if>
+            <if test="balance != null  and balance != ''"> and balance = #{balance}</if>
+            <if test="deploymentTime != null "> and deployment_time = #{deploymentTime}</if>
+            <if test="createContract != null  and createContract != ''"> and create_contract = #{createContract}</if>
+            <if test="createHash != null  and createHash != ''"> and create_hash = #{createHash}</if>
+        </where>
+    </select>
+    
+    <select id="selectNftTradeContractById" parameterType="String" resultMap="NftTradeContractResult">
+        <include refid="selectNftTradeContractVo"/>
+        where contract = #{contract}
+    </select>
+        
+    <insert id="insertNftTradeContract" parameterType="NftTradeContract">
+        insert into nft_trade_contract
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="contract != null">contract,</if>
+            <if test="name != null">name,</if>
+            <if test="website != null">website,</if>
+            <if test="twitter != null">twitter,</if>
+            <if test="email != null">email,</if>
+            <if test="discord != null">discord,</if>
+            <if test="telegram != null">telegram,</if>
+            <if test="description != null">description,</if>
+            <if test="github != null">github,</if>
+            <if test="instagram != null">instagram,</if>
+            <if test="tag != null">tag,</if>
+            <if test="balance != null">balance,</if>
+            <if test="deploymentTime != null">deployment_time,</if>
+            <if test="createContract != null">create_contract,</if>
+            <if test="createHash != null">create_hash,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="contract != null">#{contract},</if>
+            <if test="name != null">#{name},</if>
+            <if test="website != null">#{website},</if>
+            <if test="twitter != null">#{twitter},</if>
+            <if test="email != null">#{email},</if>
+            <if test="discord != null">#{discord},</if>
+            <if test="telegram != null">#{telegram},</if>
+            <if test="description != null">#{description},</if>
+            <if test="github != null">#{github},</if>
+            <if test="instagram != null">#{instagram},</if>
+            <if test="tag != null">#{tag},</if>
+            <if test="balance != null">#{balance},</if>
+            <if test="deploymentTime != null">#{deploymentTime},</if>
+            <if test="createContract != null">#{createContract},</if>
+            <if test="createHash != null">#{createHash},</if>
+         </trim>
+    </insert>
+
+    <update id="updateNftTradeContract" parameterType="NftTradeContract">
+        update nft_trade_contract
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="website != null">website = #{website},</if>
+            <if test="twitter != null">twitter = #{twitter},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="discord != null">discord = #{discord},</if>
+            <if test="telegram != null">telegram = #{telegram},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="github != null">github = #{github},</if>
+            <if test="instagram != null">instagram = #{instagram},</if>
+            <if test="tag != null">tag = #{tag},</if>
+            <if test="balance != null">balance = #{balance},</if>
+            <if test="deploymentTime != null">deployment_time = #{deploymentTime},</if>
+            <if test="createContract != null">create_contract = #{createContract},</if>
+            <if test="createHash != null">create_hash = #{createHash},</if>
+        </trim>
+        where contract = #{contract}
+    </update>
+
+    <delete id="deleteNftTradeContractById" parameterType="String">
+        delete from nft_trade_contract where contract = #{contract}
+    </delete>
+
+    <delete id="deleteNftTradeContractByIds" parameterType="String">
+        delete from nft_trade_contract where contract in 
+        <foreach item="contract" collection="array" open="(" separator="," close=")">
+            #{contract}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.NftscanMintEventMapper">
+    
+    <resultMap type="NftscanMintEvent" id="NftscanMintEventResult">
+        <result property="id"    column="id"    />
+        <result property="projectName"    column="project_name"    />
+        <result property="mintTime"    column="mint_time"    />
+        <result property="price"    column="price"    />
+        <result property="quantity"    column="quantity"    />
+        <result property="website"    column="website"    />
+        <result property="twitter"    column="twitter"    />
+        <result property="discord"    column="discord"    />
+        <result property="twitterFollowers"    column="twitter_followers"    />
+        <result property="discordOnline"    column="discord_online"    />
+        <result property="discordTotal"    column="discord_total"    />
+        <result property="creator"    column="creator"    />
+        <result property="status"    column="status"    />
+        <result property="eventDate"    column="event_date"    />
+    </resultMap>
+
+    <sql id="selectNftscanMintEventVo">
+        select id, project_name, mint_time, price, quantity, website, twitter, discord, twitter_followers, discord_online, discord_total, creator, status, logo, event_date from nftscan_mint_event
+    </sql>
+
+    <select id="selectNftscanMintEventList" parameterType="NftscanMintEvent" resultMap="NftscanMintEventResult">
+        <include refid="selectNftscanMintEventVo"/>
+        <where>  
+            <if test="projectName != null  and projectName != ''"> and project_name like concat('%', #{projectName}, '%')</if>
+            <if test="eventDate != null "> and event_date = #{eventDate}</if>
+        </where>
+    </select>
+    
+    <select id="selectNftscanMintEventById" parameterType="Integer" resultMap="NftscanMintEventResult">
+        <include refid="selectNftscanMintEventVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertNftscanMintEvent" parameterType="NftscanMintEvent" useGeneratedKeys="true" keyProperty="id">
+        insert into nftscan_mint_event
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="projectName != null">project_name,</if>
+            <if test="mintTime != null">mint_time,</if>
+            <if test="price != null">price,</if>
+            <if test="quantity != null">quantity,</if>
+            <if test="website != null">website,</if>
+            <if test="twitter != null">twitter,</if>
+            <if test="discord != null">discord,</if>
+            <if test="twitterFollowers != null">twitter_followers,</if>
+            <if test="discordOnline != null">discord_online,</if>
+            <if test="discordTotal != null">discord_total,</if>
+            <if test="creator != null">creator,</if>
+            <if test="status != null">status,</if>
+            <if test="logo != null">logo,</if>
+            <if test="eventDate != null">event_date,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="projectName != null">#{projectName},</if>
+            <if test="mintTime != null">#{mintTime},</if>
+            <if test="price != null">#{price},</if>
+            <if test="quantity != null">#{quantity},</if>
+            <if test="website != null">#{website},</if>
+            <if test="twitter != null">#{twitter},</if>
+            <if test="discord != null">#{discord},</if>
+            <if test="twitterFollowers != null">#{twitterFollowers},</if>
+            <if test="discordOnline != null">#{discordOnline},</if>
+            <if test="discordTotal != null">#{discordTotal},</if>
+            <if test="creator != null">#{creator},</if>
+            <if test="status != null">#{status},</if>
+            <if test="logo != null">#{logo},</if>
+            <if test="eventDate != null">#{eventDate},</if>
+         </trim>
+    </insert>
+
+    <update id="updateNftscanMintEvent" parameterType="NftscanMintEvent">
+        update nftscan_mint_event
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="projectName != null">project_name = #{projectName},</if>
+            <if test="mintTime != null">mint_time = #{mintTime},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="quantity != null">quantity = #{quantity},</if>
+            <if test="website != null">website = #{website},</if>
+            <if test="twitter != null">twitter = #{twitter},</if>
+            <if test="discord != null">discord = #{discord},</if>
+            <if test="twitterFollowers != null">twitter_followers = #{twitterFollowers},</if>
+            <if test="discordOnline != null">discord_online = #{discordOnline},</if>
+            <if test="discordTotal != null">discord_total = #{discordTotal},</if>
+            <if test="creator != null">creator = #{creator},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="logo != null">logo = #{logo},</if>
+            <if test="eventDate != null">event_date = #{eventDate},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteNftscanMintEventById" parameterType="Integer">
+        delete from nftscan_mint_event where id = #{id}
+    </delete>
+
+    <delete id="deleteNftscanMintEventByIds" parameterType="String">
+        delete from nftscan_mint_event where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
