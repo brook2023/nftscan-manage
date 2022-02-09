@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="adc6a311-710b-46e4-bbe8-8cdacbab88e0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-auth/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-auth/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-common/ruoyi-common-datasource/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-common/ruoyi-common-datasource/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-gateway/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-gateway/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-file/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-file/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-gen/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-gen/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-job/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-job/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-system/src/main/java/com/ruoyi/system/RuoYiSystemApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-system/src/main/java/com/ruoyi/system/RuoYiSystemApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-system/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-system/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-visual/ruoyi-monitor/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-visual/ruoyi-monitor/src/main/resources/bootstrap.yml" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-job/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-visual/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-common/ruoyi-common-log/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-file/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-common/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-gateway/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-api/ruoyi-api-system/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-gen/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-api/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-common/ruoyi-common-datascope/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-common/ruoyi-common-datasource/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-auth/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-common/ruoyi-common-security/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-system/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-common/ruoyi-common-elasticsearch/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-common/ruoyi-common-redis/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-common/ruoyi-common-swagger/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-visual/ruoyi-monitor/target/" />
+    <ignored path="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-common/ruoyi-common-core/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1423876173">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="2" />
+          <entry key="yml" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="2" />
+          <entry key="YAML" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="nftscan-manage" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-gateway/src/main/java/com/ruoyi/gateway/RuoYiGatewayApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="384">
+              <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-gateway/src/main/resources/bootstrap.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="143">
+              <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-system/src/main/resources/bootstrap.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-auth/src/main/resources/bootstrap.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-file/src/main/resources/bootstrap.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="512">
+              <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-visual/ruoyi-monitor/src/main/resources/bootstrap.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="143">
+              <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-gen/src/main/resources/bootstrap.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="111">
+              <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-system/src/main/java/com/ruoyi/system/RuoYiSystemApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>13.214.172.182:8848</find>
+      <find>127.0.0.1:8848</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>13.214.172.182:8848</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-system/src/main/java/com/ruoyi/system/RuoYiSystemApplication.java" />
+        <option value="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-system/src/main/resources/bootstrap.yml" />
+        <option value="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-auth/src/main/resources/bootstrap.yml" />
+        <option value="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-file/src/main/resources/bootstrap.yml" />
+        <option value="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-gen/src/main/resources/bootstrap.yml" />
+        <option value="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-visual/ruoyi-monitor/src/main/resources/bootstrap.yml" />
+        <option value="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-gateway/src/main/resources/bootstrap.yml" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="ruoyi" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="ruoyi" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-ui/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/RuoYi-Cloud/ruoyi-ui/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-11" />
+    <option name="width" value="1293" />
+    <option name="height" value="705" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-file" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-file" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-file" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-file" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-file" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-gen" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-gen" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-gen" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-gen" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-gen" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-system" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-system" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-system" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-system" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-system" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-system" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-system" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-system" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nftscan-manage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nftscan-manage" type="462c0819:PsiDirectoryNode" />
+              <item name="RuoYi-Cloud" type="462c0819:PsiDirectoryNode" />
+              <item name="ruoyi-ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1642509656488" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.RuoYiJobApplication">
+    <configuration name="RuoYFileApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ruoyi-modules-file" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ruoyi.file.RuoYFileApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RuoYiAuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ruoyi-auth" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ruoyi.auth.RuoYiAuthApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RuoYiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ruoyi-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ruoyi.gateway.RuoYiGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RuoYiGenApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ruoyi-modules-gen" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ruoyi.gen.RuoYiGenApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RuoYiJobApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ruoyi-modules-job" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ruoyi.job.RuoYiJobApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RuoYiMonitorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ruoyi-visual-monitor" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ruoyi.modules.monitor.RuoYiMonitorApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RuoYiSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ruoyi-modules-system" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ruoyi.system.RuoYiSystemApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.RuoYiJobApplication" />
+      <item itemvalue="Spring Boot.RuoYFileApplication" />
+      <item itemvalue="Spring Boot.RuoYiGatewayApplication" />
+      <item itemvalue="Spring Boot.RuoYiGenApplication" />
+      <item itemvalue="Spring Boot.RuoYiAuthApplication" />
+      <item itemvalue="Spring Boot.RuoYiSystemApplication" />
+      <item itemvalue="Spring Boot.RuoYiMonitorApplication" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="adc6a311-710b-46e4-bbe8-8cdacbab88e0" name="Default Changelist" comment="" />
+      <created>1642501753638</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1642501753638</updated>
+      <workItem from="1642501755940" duration="4898000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="4898000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info id="Designer" />
+      <window_info id="Image Layers" />
+      <window_info id="UI Designer" />
+      <window_info id="Favorites" sideWeight="0.5007429" side_tool="true" weight="0.16400427" />
+      <window_info id="Capture Tool" />
+      <window_info id="Web" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49925706" visible="true" weight="0.32374868" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Run Dashboard" weight="0.80972975" />
+      <window_info anchor="bottom" id="Spring" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.56972975" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" weight="0.32972974" />
+      <window_info anchor="bottom" id="Java Enterprise" weight="0.32972974" />
+      <window_info anchor="bottom" id="JProfiler" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32972974" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Maven Projects" visible="true" weight="0.32960597" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Bean Validation" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-system/src/main/java/com/ruoyi/system/RuoYiSystemApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-gateway/src/main/java/com/ruoyi/gateway/RuoYiGatewayApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-auth/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-file/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-visual/ruoyi-monitor/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-gen/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-modules/ruoyi-system/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RuoYi-Cloud/ruoyi-gateway/src/main/resources/bootstrap.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
